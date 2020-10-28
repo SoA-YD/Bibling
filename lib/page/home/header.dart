@@ -31,12 +31,14 @@ class HeaderState extends State<Header> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     num chapterCnt = widget.chapterCnt ?? 1;
     num avg;
+    _readCnt = _prefs.then((SharedPreferences prefs) {
+      return (prefs.getInt("${widget.title}Cnt") ?? 0);
+    });
 
     return FutureBuilder<int>(
         future: _readCnt,
         builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
           if (snapshot.hasData) {
-            print(chapterCnt);
             avg = (snapshot.data / chapterCnt) * 100;
             return Column(
               children: [

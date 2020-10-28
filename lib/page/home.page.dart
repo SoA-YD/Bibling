@@ -104,10 +104,12 @@ class _HomePageState extends State<HomePage> {
                           childAspectRatio: 1 / 1.32,
                           children: isOld
                               ? _oldTestament[index].map((Glitter glitter) {
-                                  return GlitterButton(glitter: glitter);
+                                  return GlitterButton(
+                                      glitter: glitter, notifyParent: refresh);
                                 }).toList()
                               : _newTestament[index].map((Glitter glitter) {
-                                  return GlitterButton(glitter: glitter);
+                                  return GlitterButton(
+                                      glitter: glitter, notifyParent: refresh);
                                 }).toList()),
                     ),
                   ],
@@ -116,5 +118,9 @@ class _HomePageState extends State<HomePage> {
             );
           }),
     );
+  }
+
+  void refresh(int counter) {
+    setState(() {});
   }
 }

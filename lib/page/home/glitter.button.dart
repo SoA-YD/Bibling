@@ -4,7 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class GlitterButton extends StatefulWidget {
   final Glitter glitter;
-  GlitterButton({Key key, @required Glitter glitter})
+  final Function(int) notifyParent;
+
+  GlitterButton(
+      {Key key, @required Glitter glitter, @required this.notifyParent})
       : assert(glitter != null),
         glitter = glitter,
         super(key: key);
@@ -92,17 +95,15 @@ class GlitterButtonState extends State<GlitterButton>
   _incrementCnt() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int counter = (prefs.getInt('${_glitter.title}Cnt') ?? 0) + 1;
-    print("##########3");
-    print(counter);
     await prefs.setInt('${_glitter.title}Cnt', counter);
+    widget.notifyParent(counter);
   }
 
   _decrementCnt() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int counter = (prefs.getInt('${_glitter.title}Cnt') ?? 0) - 1;
-    print("##########3");
-    print(counter);
     await prefs.setInt('${_glitter.title}Cnt', counter);
+    widget.notifyParent(counter);
   }
 
   @override
