@@ -41,8 +41,27 @@ class HeaderState extends State<Header> with TickerProviderStateMixin {
           if (snapshot.hasData) {
             avg = (snapshot.data / chapterCnt) * 100;
             return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/flower.png', width: 48.0),
+                avg >= 100
+                    ? Image.asset(
+                        avg >= 100
+                            ? 'assets/bible_open.png'
+                            : 'assets/bible_closed.png',
+                        width: 58.0,
+                        height: 48.0,
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Image.asset(
+                          avg >= 100
+                              ? 'assets/bible_open.png'
+                              : 'assets/bible_closed.png',
+                          width: 40.0,
+                          height: 48.0,
+                        ),
+                      ),
                 SizedBox(height: 8.0),
                 Text(
                   widget.title,

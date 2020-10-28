@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
 
   _bodySection({bool isOld = true}) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24.0, 0.0, 20.0, 8.0),
+      padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 8.0),
       child: ListView.builder(
           itemCount: isOld ? _oldTestament.length : _newTestament.length,
           itemBuilder: (BuildContext context, int index) {

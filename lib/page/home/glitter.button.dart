@@ -33,7 +33,7 @@ class GlitterButtonState extends State<GlitterButton>
     _glitter = widget.glitter;
 
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 700), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
     //_controller.repeat(reverse: true);
   }
 
@@ -43,7 +43,7 @@ class GlitterButtonState extends State<GlitterButton>
         future: _isTwinkle,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           bool isTwinkleValue = snapshot.data ?? false;
-          _tween = Tween(begin: 1.0, end: !isTwinkleValue ? 1.0 : 1.12);
+          _tween = Tween(begin: 1.0, end: !isTwinkleValue ? 1.0 : 1.18);
           return InkWell(
               splashColor: Colors.transparent,
               onTap: () {
